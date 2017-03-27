@@ -1,4 +1,12 @@
 GIT
+  remote: https://github.com/jonstokes/mint2qif.git
+  revision: 3bbc81a58cbaf2f2944b26a14d0726e7894e5f2f
+  specs:
+    mint2qif (0.1.0)
+      qif (~> 1.2)
+      virtus (~> 1.0.5)
+
+GIT
   remote: https://github.com/rails/sass-rails.git
   revision: dfbcc6a53653d8908007e26324a0f299f026ec4f
   specs:
@@ -51,6 +59,10 @@ GEM
     addressable (2.5.0)
       public_suffix (~> 2.0, >= 2.0.2)
     arel (8.0.0)
+    axiom-types (0.1.1)
+      descendants_tracker (~> 0.0.4)
+      ice_nine (~> 0.11.0)
+      thread_safe (~> 0.3, >= 0.3.1)
     builder (3.2.3)
     byebug (9.0.6)
     capybara (2.7.1)
@@ -62,14 +74,20 @@ GEM
       xpath (~> 2.0)
     childprocess (0.6.3)
       ffi (~> 1.0, >= 1.0.11)
+    coercible (1.0.0)
+      descendants_tracker (~> 0.0.1)
     concurrent-ruby (1.0.5)
     debug_inspector (0.0.2)
+    descendants_tracker (0.0.4)
+      thread_safe (~> 0.3, >= 0.3.1)
+    equalizer (0.0.11)
     erubi (1.6.0)
     execjs (2.7.0)
     ffi (1.9.18)
     globalid (0.3.7)
       activesupport (>= 4.1.0)
     i18n (0.8.1)
+    ice_nine (0.11.2)
     jbuilder (2.6.3)
       activesupport (>= 3.0.0, < 5.2)
       multi_json (~> 1.2)
@@ -94,6 +112,7 @@ GEM
     pg (0.20.0)
     public_suffix (2.0.5)
     puma (3.8.2)
+    qif (1.2.0)
     rack (2.0.1)
     rack-test (0.6.3)
       rack (>= 1.0)
@@ -147,6 +166,11 @@ GEM
       thread_safe (~> 0.1)
     uglifier (3.1.10)
       execjs (>= 0.3.0, < 3)
+    virtus (1.0.5)
+      axiom-types (~> 0.1)
+      coercible (~> 1.0)
+      descendants_tracker (~> 0.0, >= 0.0.3)
+      equalizer (~> 0.0, >= 0.0.9)
     web-console (3.4.0)
       actionview (>= 5.0)
       activemodel (>= 5.0)
@@ -167,6 +191,7 @@ DEPENDENCIES
   capybara (~> 2.7.0)
   jbuilder (~> 2.5)
   listen (>= 3.0.5, < 3.2)
+  mint2qif!
   pg (~> 0.18)
   puma (~> 3.7)
   rails (~> 5.1.0.beta1)
