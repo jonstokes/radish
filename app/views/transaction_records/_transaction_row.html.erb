@@ -1,0 +1,26 @@
+<tr>
+  <td><%= transaction.date %></td>
+  <td><%= transaction.description %></td>
+  <td><%= humanized_money_with_symbol transaction.amount %></td>
+  <td><%= transaction.account.name %></td>
+  <td><%= transaction.category %></td>
+  <td>
+    <ul>
+      <li>
+        <%= link_to transaction do %>
+          <%= fa_icon 'eye' %>
+        <% end %>
+      </li>
+      <li>
+        <%= link_to edit_transaction_record_path(transaction) do %>
+          <%= fa_icon 'edit' %>
+        <% end %>
+      </li>
+      <li>
+        <%= link_to transaction, method: :delete, data: { confirm: 'Are you sure?' } do %>
+          <%= fa_icon 'trash' %>
+        <% end %>
+      </li>
+    </ul>
+  </td>
+</tr>

@@ -1,0 +1,34 @@
+<div class="main">
+  <div class="content">
+    <p id="notice"><%= notice %></p>
+
+    <h1>Subcategories</h1>
+
+    <% @categories.each do |category| %>
+
+      <table>
+        <thead>
+          <tr>
+            <th width=80%><%= category.name %></th>
+            <th colspan="3"></th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <% category.subcategories.each do |subcategory| %>
+            <tr>
+              <td><%= subcategory.name %></td>
+              <td><%= link_to 'Show', subcategory %></td>
+              <td><%= link_to 'Edit', edit_subcategory_path(subcategory) %></td>
+              <td><%= link_to 'Destroy', subcategory, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+      <br>
+
+    <% end %>
+
+    <%= link_to 'New Subcategory', new_subcategory_path %>
+  </div>
+</div>

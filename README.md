@@ -1,24 +1,21 @@
-# README
+# Radish: Money with Rails and ActiveAdmin
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+I hate Mint and find it a pain to use, and I wanted a money app 
+that works the way I want it to work. So I just spend some time
+hacking at Rails + ActiveAdmin, and Radish was born.
 
-Things you may want to cover:
+Future plans involve wiring it up to [Plaid](http://plaid.com/), 
+making the interface a little more intuitive, and a full spec suite. 
+But right now it works well enough to use, and it supports CSV imports 
+from Chase bank, Chase credit cards, and Amex.
 
-* Ruby version
+PRs are welcome.
 
-* System dependencies
+## Requirements
+- Postgres
+- Redis (for sidekiq)
+- Ruby 2.6.3
 
-* Configuration
+![screenshot](/public/radish-transactions.png)
 
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+![screenshot](/public/radish-uploads.png)

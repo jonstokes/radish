@@ -1,3 +1,3 @@
 class Label < ApplicationRecord
-  has_many :transactions, through: :transaction_labels
+  has_and_belongs_to_many :transaction_records
 end

@@ -1,0 +1,42 @@
+<div class="date-nav">
+  <div class="months">
+    <span>2016:</span>
+    <ul class="month-items">
+      <% Date::MONTHNAMES.compact.each_with_index do |month_name, month_number| %>
+        <% month = "#{month_number + 1}-2016" %>
+        <% class_name = params[:month] == month ? "active" : "inactive" %>
+        <li class="<%= class_name %>" >
+          <%= link_to month_name, send(path, month: month) %>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+
+  <div class="months">
+    <span>2017:</span>
+    <ul class="month-items">
+      <% Date::MONTHNAMES.compact.each_with_index do |month_name, month_number| %>
+        <% month = "#{month_number + 1}-2017" %>
+        <% class_name = params[:month] == month ? "active" : "inactive" %>
+        <li class="<%= class_name %>" >
+          <%= link_to month_name, send(path, month: month) %>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+
+  <div class="months">
+    <span>Shortcuts:</span>
+    <ul class="month-items">
+      <% current_month = Time.current.strftime("%m-%Y") %>
+      <% previous_month = 1.month.ago.strftime("%m-%Y") %>
+      <% ytd_params = { start_date: Time.current.beginning_of_year.strftime("%m-%d-%Y"), end_date: Time.current.strftime("%m-%d-%Y") } %>
+      <% cm_class_name = params.permit(:month, :start_date, :end_date).empty? || (params[:month] == current_month) ? "active" : "inactive" %>
+      <% pr_class_name = params[:month] == previous_month ? "active" : "inactive" %>
+      <% ytd_class_name = params.permit(:start_date, :end_date).to_h == ytd_params.stringify_keys ? "active" : "inactive" %>
+      <li class="<%= cm_class_name %>"><%= link_to "Current Month", send(path, month: current_month) %></li>
+      <li class="<%= pr_class_name %>"><%= link_to "Previous Month", send(path, month: previous_month) %></li>
+      <li class="<%= ytd_class_name %>"><%= link_to "Year-to-Date", send(path, ytd_params) %></li>
+    </ul>
+  </div>
+</div>

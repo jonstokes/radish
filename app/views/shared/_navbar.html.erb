@@ -1,0 +1,11 @@
+<div class="navbar">
+  <%= link_to root_path, class: "navbar-brand" do %>
+    RADISH
+  <% end %>
+  <ul class="navbar-items">
+    <li><%= link_to "Transactions", transaction_records_path %></li>
+    <li><%= link_to "Reports", reports_path %></li>
+    <li><%= link_to "Categories", categories_path %></li>
+    <li><%= link_to "Subcategories", subcategories_path %></li>
+  </ul>
+</div>

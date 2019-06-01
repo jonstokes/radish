@@ -1,0 +1,35 @@
+<div class="report">
+  <table class="index_table index">
+    <thead>
+      <tr>
+        <th align="left" width=80%>TOTAL FOR PERIOD</th>
+        <th align="right">$<%= humanized_money report.grand_total %></th>
+      </tr>
+    </thead>
+  </table>
+
+  <br />
+  <br />
+
+  <% report.each_category do |category| %>
+    <table  class="index_table index">
+      <thead>
+        <tr>
+          <th align="left" width=80%><%= category.name %> &mdash; TOTAL</th>
+          <th align="right">$ <%= humanized_money category.total %></th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% report.each_subcategory_for(category) do |subcategory| %>
+          <tr class="<%= cycle('even', 'odd') -%>">
+            <td align="left"><%= subcategory.name %></td>
+            <td align="right"><%= humanized_money subcategory.total %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+    <br>
+
+  <% end %>
+</div>
