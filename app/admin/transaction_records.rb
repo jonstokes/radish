@@ -47,7 +47,7 @@ permit_params :account_id,
       div 
         em small tr.category_key
     end
-    column "Amount", sortable: :amount do |transaction_record|
+    column "Amount", sortable: :amount_cents do |transaction_record|
       number_to_currency transaction_record.amount
     end
     column "Category" do |transaction_record|
