@@ -32,6 +32,7 @@ permit_params :account_id,
   filter :notes
   filter :upload, as: :select, collection: -> { Upload.order("created_at desc").limit(10).pluck(:created_at, :id) }
   filter :category_id_not_eq, label: 'Except Category', as: :select, collection: ->{ Category.all }
+  filter :subcategory_id_not_eq, label: 'Except Subcategory', as: :select, collection: ->{ Subcategory.all }
   filter :without_label_in, label: 'Except Label', as: :select, collection: ->{ Label.all }
 
   config.sort_order = 'date_desc'
