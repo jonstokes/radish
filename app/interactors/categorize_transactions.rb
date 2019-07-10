@@ -3,12 +3,16 @@ class CategorizeTransactions
 
   context_with(
     Class.new(BaseContext) do
-      attr_accessor :query, :scope, :count
+      attr_accessor :query, :scope, :count, :account_ids
     end
   )
   delegate :query, :scope, to: :context
 
-  before { context.count = 0 }
+  before do
+    context.count = 0
+    upload = Upload.find(scope[:upload_id])
+    context.account_ids = upload.transaction_records.distinct(:account_id).pluck(:account_id)
+  end
 
   def call
     begin
@@ -22,7 +26,7 @@ class CategorizeTransactions
     TransactionRecord.transaction do
       TransactionRecord.where(scope).where(query).find_each do |entry|
         categorizations = TransactionRecord.
-          where(scope).
+          where(account_id: context.account_ids).
           where.not(query.merge(category_key: "check")).
           where(category_key: entry.category_key).
           pluck(:category_id, :subcategory_id)
