@@ -51,4 +51,28 @@ ActiveAdmin.register Upload do
     )
     redirect_to admin_uploads_path, notice: "Categorizing entries."
   end
+
+  action_item :only => :index do
+    link_to 'Upload CSV', :action => 'upload_csv'
+  end
+
+  collection_action :upload_csv do
+    render "admin/csv/upload_csv"
+  end
+
+  collection_action :import_csv, :method => :post do
+    account_id = params[:dump][:account_id]
+    read_file = ReadCsv.call(file: params[:dump][:file])
+
+    if read_file.success?
+      ImportTransactionsWorker.perform_async(
+        account_id: account_id,
+        user_id: current_user.id,
+        file: read_file.output
+      )
+      redirect_to :action => :index, notice: "Importing transactions for user #{current_user.email}..."  
+    else
+      redirect_to :action => :index, alert: read_file.error  
+    end
+  end
 end
