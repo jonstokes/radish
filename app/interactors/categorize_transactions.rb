@@ -10,6 +10,11 @@ class CategorizeTransactions
 
   before do
     context.count = 0
+    query.symbolize_keys!
+    scope.symbolize_keys!
+  end
+
+  before do
     upload = Upload.find(scope[:upload_id])
     context.account_ids = upload.transaction_records.distinct(:account_id).pluck(:account_id)
   end
