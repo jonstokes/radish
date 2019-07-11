@@ -2,15 +2,8 @@ ActiveAdmin.register Upload do
 # See permitted parameters documentation:
 # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
 #
-# permit_params :list, :of, :attributes, :on, :model
-#
-# or
-#
-# permit_params do
-#   permitted = [:permitted, :attributes]
-#   permitted << :other if params[:action] == 'create' && current_user.admin?
-#   permitted
-# end
+  permit_params :account_id, :file
+
   actions :all 
 
   config.sort_order = 'created_at_desc'
@@ -52,10 +45,18 @@ ActiveAdmin.register Upload do
     redirect_to admin_uploads_path, notice: "Categorizing entries."
   end
 
+  form do |f|
+    f.inputs do
+      f.input :account_id, as: :select, collection: [["Import from Mint", nil]] + Account.pluck(:name, :id)
+      f.input :file, as: :file
+    end
+    f.actions
+  end
+
   controller do
     def create
-      account_id = params[:dump][:account_id]
-      read_file = ReadCsv.call(file: params[:dump][:file])
+      account_id = params[:upload][:account_id]
+      read_file = ReadCsv.call(file: params[:upload][:file])
   
       if read_file.success?
         ImportTransactionsWorker.perform_async(
