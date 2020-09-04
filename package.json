@@ -24,7 +24,7 @@
     "coffee-script": "^1.12.4",
     "css-loader": "^0.28.0",
     "glob": "^7.1.1",
-    "node-sass": "^4.5.2",
+    "node-sass": "^4.13.1",
     "path-complete-extname": "^0.1.0",
     "rails-erb-loader": "^5.0.0",
     "sass-loader": "^6.0.3",
