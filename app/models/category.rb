@@ -6,6 +6,8 @@ class Category < ApplicationRecord
 
   module ClassMethods
     def category_select
+      # Check if the db exists
+      ActiveRecord::Base.connection
       # TODO: rewrite with a map or something more elegant, and move it to a module
       categories = []
       Category.pluck(:name, :id).each do |category_attrs|
@@ -15,6 +17,8 @@ class Category < ApplicationRecord
         end
       end
       categories
+    rescue
+      nil
     end
   end
   extend ClassMethods
