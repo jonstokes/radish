@@ -17,7 +17,7 @@ FactoryBot.define do
     account
     category
 
-    date { Faker::Date.between(1.year.ago, Date.today) }
+    date { Faker::Date.between(from: 1.year.ago, to: Date.today) }
     description  { Faker::Company.name }
     original_description { "#{Faker::Company.name.upcase} #{Faker::Company.duns_number}" }
     amount { Faker::Number.between(-1000, 1000) }
