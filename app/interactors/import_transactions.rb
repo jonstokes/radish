@@ -16,6 +16,9 @@ class ImportTransactions
 
   def call
     csv_input.each do |line|
+      # Skip header
+      next if line[0].strip == "Date"
+
       new_entry = TransactionRecord.new(
         import_adapter.translate(line).merge(upload: upload)
       )

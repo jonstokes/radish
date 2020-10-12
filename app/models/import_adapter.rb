@@ -105,12 +105,13 @@ class ImportAdapter
 
   class Amex < Base
     def translate(line)
+      binding.pry
       entry = {
         account:      account,
         date:         Date.strptime(line[0], "%m/%d/%Y"),
-        amount:       flip_sign(line[7]),
+        amount:       flip_sign(line[4]),
         description:  derive_description(line),
-        original_description: line[2],
+        original_description: line[1],
         category:     default_category,
         category_key: generate_category_key(line[11]),
         notes:        "#{line[3]} #{line[4]} #{line[10].try(:strip)}".squish,
@@ -124,7 +125,7 @@ class ImportAdapter
     end
 
     def derive_description(line)
-      (clean_description(line[11]).presence || clean_description(line[2]).presence).try(:titlecase)
+      (clean_description(line[1]).presence || clean_description(line[5]).presence).try(:titlecase)
     end
 
     def csv_options
